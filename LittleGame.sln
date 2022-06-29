@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleGame.Logic", "LittleGame.Logic\LittleGame.Logic.csproj", "{D189E179-557B-4106-81F0-C178E0F77530}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleGame.UnitTests", "LittleGame.UnitTests\LittleGame.UnitTests.csproj", "{1D1B3647-4C14-406F-A52D-061DAFE9FDFB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D189E179-557B-4106-81F0-C178E0F77530}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D189E179-557B-4106-81F0-C178E0F77530}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D189E179-557B-4106-81F0-C178E0F77530}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D189E179-557B-4106-81F0-C178E0F77530}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D1B3647-4C14-406F-A52D-061DAFE9FDFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D1B3647-4C14-406F-A52D-061DAFE9FDFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D1B3647-4C14-406F-A52D-061DAFE9FDFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D1B3647-4C14-406F-A52D-061DAFE9FDFB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
