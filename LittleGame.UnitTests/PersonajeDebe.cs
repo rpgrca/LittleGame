@@ -10,15 +10,20 @@ public class PersonajeDebe
     [InlineData(" ")]
     public void LanzarExcepcion_CuandoElPersonajeNoTieneNombre(string nombreInvalido)
     {
-        var exception = Assert.Throws<ArgumentException>(() => new Personaje(nombreInvalido));
+        var exception = Assert.Throws<ArgumentException>(() => new Personaje(nombreInvalido, Tipo.Mago));
         Assert.StartsWith("Nombre invalido", exception.Message);
     }
 
     [Fact]
     public void RetornarElNombreCorrectamente()
     {
-        var sut = new Personaje("Raistlin");
+        var sut = CreateSubjectUnderTest();
         Assert.Equal("Raistlin", sut.Nombre);
+    }
+
+    private static Personaje CreateSubjectUnderTest()
+    {
+        return new Personaje("Raistlin", Tipo.Mago);
     }
 
     [Theory]
@@ -26,10 +31,23 @@ public class PersonajeDebe
     [InlineData("")]
     public void RetornarElApodoCorrectamente(string apodo)
     {
-        var sut = new Personaje("Raistlin");
+        var sut = CreateSubjectUnderTest();
         sut.Apodo = apodo;
 
         Assert.Equal(apodo, sut.Apodo);
     }
 
+    [Fact]
+    public void RetornarSaludCorrectamente()
+    {
+        var sut = CreateSubjectUnderTest();
+        Assert.Equal(100, sut.Salud);
+    }
+
+    [Fact]
+    public void RetornarTipoCorrectamente()
+    {
+        var sut = CreateSubjectUnderTest();
+        Assert.Equal(Tipo.Mago, sut.Tipo);
+    }
 }
