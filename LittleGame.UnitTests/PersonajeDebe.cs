@@ -10,7 +10,7 @@ public class PersonajeDebe
     [InlineData(" ")]
     public void LanzarExcepcion_CuandoElPersonajeNoTieneNombre(string nombreInvalido)
     {
-        var exception = Assert.Throws<ArgumentException>(() => new Personaje(nombreInvalido, Tipo.Mago));
+        var exception = Assert.Throws<ArgumentException>(() => new Personaje(nombreInvalido, Tipo.Mago, new DateOnly(2000, 1, 1)));
         Assert.StartsWith("Nombre invalido", exception.Message);
     }
 
@@ -23,7 +23,7 @@ public class PersonajeDebe
 
     private static Personaje CreateSubjectUnderTest()
     {
-        return new Personaje("Raistlin", Tipo.Mago);
+        return new Personaje("Raistlin", Tipo.Mago, new DateOnly(2000, 1, 1));
     }
 
     [Theory]
@@ -49,5 +49,12 @@ public class PersonajeDebe
     {
         var sut = CreateSubjectUnderTest();
         Assert.Equal(Tipo.Mago, sut.Tipo);
+    }
+
+    [Fact]
+    public void RetornarNacimientoCorrectamente()
+    {
+        var sut = CreateSubjectUnderTest();
+        Assert.Equal(new DateOnly(2000, 1, 1), sut.Nacimiento);
     }
 }
