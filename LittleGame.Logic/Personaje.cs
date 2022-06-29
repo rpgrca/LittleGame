@@ -2,8 +2,13 @@
 
 public class Personaje
 {
-    public Personaje(string name)
+    public string Nombre { get; }
+    public string Apodo { get; set; }
+
+    public Personaje(string nombre)
     {
-        if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Nombre invalido");
+        if (string.IsNullOrWhiteSpace(nombre)) throw new ArgumentException("Nombre invalido");
+
+        Nombre = nombre;
     }
 }
