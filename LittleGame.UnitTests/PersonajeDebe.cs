@@ -10,4 +10,12 @@ public class PersonajeDebe
         var exception = Assert.Throws<ArgumentException>(() => new Personaje(""));
         Assert.StartsWith("Nombre invalido", exception.Message);
     }
+
+    [Fact]
+    public void LanzarExcepcion_CuandoElPersonajeTieneNombreNulo()
+    {
+        var exception = Assert.Throws<ArgumentException>(() => new Personaje(null));
+        Assert.StartsWith("Nombre invalido", exception.Message);
+    }
+
 }
