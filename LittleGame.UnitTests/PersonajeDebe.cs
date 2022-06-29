@@ -4,6 +4,10 @@ namespace LittleGame.UnitTests;
 
 public class PersonajeDebe
 {
+    private const string RAISTLIN_NAME = "Raistlin";
+    private const int RAISTLIN_SPEED = 3;
+    private static readonly DateOnly RAISTLIN_BIRTHDAY = new(2000, 1, 1);
+
     [Theory]
     [InlineData("")]
     [InlineData(null)]
@@ -18,12 +22,12 @@ public class PersonajeDebe
     public void RetornarElNombreCorrectamente()
     {
         var sut = CreateSubjectUnderTest();
-        Assert.Equal("Raistlin", sut.Nombre);
+        Assert.Equal(RAISTLIN_NAME, sut.Nombre);
     }
 
     private static Personaje CreateSubjectUnderTest()
     {
-        return new Personaje("Raistlin", Tipo.Mago, new DateOnly(2000, 1, 1));
+        return new Personaje(RAISTLIN_NAME, Tipo.Mago, new DateOnly(2000, 1, 1));
     }
 
     [Theory]
@@ -55,6 +59,13 @@ public class PersonajeDebe
     public void RetornarNacimientoCorrectamente()
     {
         var sut = CreateSubjectUnderTest();
-        Assert.Equal(new DateOnly(2000, 1, 1), sut.Nacimiento);
+        Assert.Equal(RAISTLIN_BIRTHDAY, sut.Nacimiento);
+    }
+
+    [Fact]
+    public void RetornarEdadCorrectamente()
+    {
+        var sut = CreateSubjectUnderTest();
+        Assert.Equal(22, sut.Edad);
     }
 }
