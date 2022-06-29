@@ -4,18 +4,13 @@ namespace LittleGame.UnitTests;
 
 public class PersonajeDebe
 {
-    [Fact]
-    public void LanzarExcepcion_CuandoElPersonajeNoTieneNombre()
+    [Theory]
+    [InlineData("")]
+    [InlineData(null)]
+    [InlineData(" ")]
+    public void LanzarExcepcion_CuandoElPersonajeNoTieneNombre(string nombreInvalido)
     {
-        var exception = Assert.Throws<ArgumentException>(() => new Personaje(""));
+        var exception = Assert.Throws<ArgumentException>(() => new Personaje(nombreInvalido));
         Assert.StartsWith("Nombre invalido", exception.Message);
     }
-
-    [Fact]
-    public void LanzarExcepcion_CuandoElPersonajeTieneNombreNulo()
-    {
-        var exception = Assert.Throws<ArgumentException>(() => new Personaje(null));
-        Assert.StartsWith("Nombre invalido", exception.Message);
-    }
-
 }

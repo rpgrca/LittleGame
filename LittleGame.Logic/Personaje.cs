@@ -4,6 +4,6 @@ public class Personaje
 {
     public Personaje(string name)
     {
-        if (name == "" || name is null) throw new ArgumentException("Nombre invalido");
+        if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Nombre invalido");
     }
 }
