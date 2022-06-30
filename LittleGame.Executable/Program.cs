@@ -21,6 +21,7 @@ class Program
             Console.WriteLine("1) Crear personaje");
             Console.WriteLine("2) Mostrar datos de personaje");
             Console.WriteLine("3) Mostrar características de personaje");
+            Console.WriteLine("4) Combate");
             Console.WriteLine("9) Salir");
             Console.WriteLine();
             Console.Write("Ingrese opcion: ");
@@ -61,6 +62,35 @@ class Program
                     else
                     {
                         Console.WriteLine("Número de personaje inválido.");
+                    }
+                    break;
+
+                case "4":
+                    maximo = personajesCreados.Count - 1;
+                    Console.Write($"Elija al primer combatiente (0..{maximo}) ");
+                    var primero = int.Parse(Console.ReadLine());
+                    Console.Write($"Elija al segundo combatiente (0..{maximo}) ");
+                    var segundo = int.Parse(Console.ReadLine());
+
+                    if (primero == segundo)
+                    {
+                        Console.WriteLine($"{personajesCreados[primero].Nombre} no puede pelear consigo mismo");
+                    }
+                    else
+                    {
+                        var primerCombatiente = personajesCreados[primero];
+                        var segundoCombatiente = personajesCreados[segundo];
+                        var combate = new Combate(primerCombatiente, segundoCombatiente);
+                        combate.Pelear();
+                        if (combate.Ganador is null)
+                        {
+                            Console.WriteLine($"La pelea entre {primerCombatiente} y {segundoCombatiente} terminó en empate");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Ganó {combate.Ganador.Nombre}");
+                            personajesCreados.Remove(combate.Perdedor);
+                        }
                     }
                     break;
 
