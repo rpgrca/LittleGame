@@ -1,11 +1,73 @@
 ﻿using System;
+using LittleGame.Logic;
 
 namespace LittleGame.Executable;
 
-public class Program
+class Program
 {
-    public static void Main(string[] args)
+    static void Main(string[] args)
     {
-        Console.WriteLine("==== LittleGame =====");
+        int index, maximo;
+        string texto;
+
+        var creadorDePersonajes = new CreadorDePersonajes();
+        var personajesCreados = new List<Personaje>();
+        var salir = false;
+
+        do
+        {
+            Console.WriteLine();
+            Console.WriteLine("==== LittleGame =====");
+            Console.WriteLine("1) Crear personaje");
+            Console.WriteLine("2) Mostrar datos de personaje");
+            Console.WriteLine("3) Mostrar características de personaje");
+            Console.WriteLine("9) Salir");
+            Console.WriteLine();
+            Console.Write("Ingrese opcion: ");
+
+            var input = Console.ReadLine().Trim();
+            switch (input)
+            {
+                case "1":
+                    var personaje = creadorDePersonajes.Crear();
+                    personajesCreados.Add(personaje);
+                    Console.WriteLine($"Se ha creado el personaje {personaje.Nombre}");
+                    break;
+
+                case "2":
+                    maximo = personajesCreados.Count - 1;
+                    Console.Write($"Mostrar datos de cuál personaje (0..{maximo})? ");
+                    index = int.Parse(Console.ReadLine());
+                    if (index >= 0 && index <= maximo)
+                    {
+                        texto = personajesCreados[index].DescripcionDeDatos();
+                        Console.WriteLine(texto);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Número de personaje inválido.");
+                    }
+                    break;
+
+                case "3":
+                    maximo = personajesCreados.Count - 1;
+                    Console.Write($"Mostrar caracteristicas de cuál personaje (0..{maximo})? ");
+                    index = int.Parse(Console.ReadLine());
+                    if (index >= 0 && index <= maximo)
+                    {
+                        texto = personajesCreados[index].DescripcionDeCaracteristicas();
+                        Console.WriteLine(texto);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Número de personaje inválido.");
+                    }
+                    break;
+
+                case "9":
+                    salir = true;
+                    break;
+            }
+        } while (! salir);
     }
 }

@@ -100,7 +100,7 @@ public class Personaje
         Edad =  DateTime.Now.Year - Nacimiento.Year;
 
         var random = new Random();
-        Velocidad = random.Next(1, 18);
+        Velocidad = random.Next(1, 11);
         Fuerza = random.Next(1, 11);
         Nivel = random.Next(1, 11);
         Armadura = random.Next(1, 11);
