@@ -106,4 +106,25 @@ public class Personaje
         Armadura = random.Next(1, 11);
         Destreza = random.Next(1, 6);
     }
+
+    public string DescripcionDeDatos()
+    {
+        return
+            $"Nombre    : {Nombre}" + Environment.NewLine +
+            $"Apodo     : {Apodo}" + Environment.NewLine +
+            $"Tipo      : {Tipo}" + Environment.NewLine +
+            $"Salud     : {Salud}" + Environment.NewLine +
+            $"Nacimiento: {Nacimiento}" + Environment.NewLine +
+            $"Edad      : {Edad}";
+    }
+
+    public string DescripcionDeCaracteristicas()
+    {
+        return
+            $"Velocidad : {Velocidad}" + Environment.NewLine +
+            $"Fuerza    : {Fuerza}" + Environment.NewLine +
+            $"Nivel     : {Nivel}" + Environment.NewLine +
+            $"Armadura  : {Armadura}" + Environment.NewLine +
+            $"Destreza  : {Destreza}";
+    }
 }
