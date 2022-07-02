@@ -9,6 +9,7 @@ class Program
     {
         int index, maximo;
         string texto;
+        ListadoDeGanadores listado;
 
         var creadorDePersonajes = new CreadorDePersonajes();
         var personajesCreados = new List<Personaje>();
@@ -92,10 +93,15 @@ class Program
                             Console.WriteLine($"Ganó {combate.Ganador.Nombre}");
                             personajesCreados.Remove(combate.Perdedor);
 
-                            var listado = new ListadoDeGanadores("./ganadores.csv");
+                            listado = new ListadoDeGanadores("./ganadores.csv");
                             listado.Agregar(combate.Ganador, combate.Perdedor);
                         }
                     }
+                    break;
+
+                case "5":
+                    listado = new ListadoDeGanadores("./ganadores.csv");
+                    listado.Listar();
                     break;
 
                 case "9":
