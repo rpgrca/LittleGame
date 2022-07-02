@@ -5,10 +5,10 @@ namespace LittleGame.UnitTests;
 public class CreadorDePersonajesDebe
 {
     [Fact]
-    public void RetornarUnPersonajeConDatos()
+    public async void RetornarUnPersonajeConDatos()
     {
         var sut = new CreadorDePersonajes();
-        var personaje = sut.Crear();
+        var personaje = await sut.Crear();
         Assert.NotNull(personaje);
     }
 }

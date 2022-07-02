@@ -1,37 +1,27 @@
+using Newtonsoft.Json;
+
 namespace LittleGame.Logic;
 
 public class CreadorDePersonajes
 {
-    private readonly List<string> _nombres;
+    private readonly List<string> _nombresUsados;
     private readonly Random _random;
 
     public CreadorDePersonajes()
     {
         _random = new Random();
-        _nombres = new()
-        {
-            "Gandalf",
-            "Legolas",
-            "Gimli",
-            "Raistlin",
-            "Tanis",
-            "Drizzt",
-            "Goldmoon",
-            "Riverwind",
-            "Sturm",
-            "Frodo"
-        };
+        _nombresUsados = new List<string>();
     }
 
-    public Personaje Crear()
+    public async Task<Personaje> Crear()
     {
-        var nombre = ElegirNombre();
+        var nombre = await ElegirNombre();
         var tipo = ElegirTipo();
         var nacimiento = ElegirNacimiento();
         return new Personaje(nombre, tipo, nacimiento);
     }
 
-    public void InvalidarNombre(string nombre) => _nombres.Remove(nombre);
+    public void InvalidarNombre(string nombre) => _nombresUsados.Add(nombre);
 
     private DateOnly ElegirNacimiento()
     {
@@ -49,13 +39,20 @@ public class CreadorDePersonajes
         return tipos[index];
     }
 
-    private string ElegirNombre()
+    private async Task<string> ElegirNombre()
     {
-        // TODO: que pasa si se me acaban los nombres
-        var index = _random.Next(0, _nombres.Count);
-        var nombreElegido = _nombres[index];
-        _nombres.RemoveAt(index);
+        string nombreElegido;
+        var httpClient = new HttpClient();
 
+        do
+        {
+            var respuesta = await httpClient.GetStringAsync(new Uri("https://random-names-api.herokuapp.com/random"));
+            var nombreAleatorio = JsonConvert.DeserializeObject<RandomName>(respuesta);
+
+            nombreElegido = nombreAleatorio.Body.Name;
+        } while (_nombresUsados.Contains(nombreElegido));
+
+        _nombresUsados.Add(nombreElegido);
         return nombreElegido;
     }
 }

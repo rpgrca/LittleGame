@@ -5,7 +5,7 @@ namespace LittleGame.Executable;
 
 class Program
 {
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
         int index, maximo;
         string texto;
@@ -34,7 +34,7 @@ class Program
             switch (input)
             {
                 case "1":
-                    var personaje = creadorDePersonajes.Crear();
+                    var personaje = await creadorDePersonajes.Crear();
                     personajesCreados.Add(personaje);
                     Console.WriteLine($"Se ha creado el personaje {personaje.Nombre}");
 
