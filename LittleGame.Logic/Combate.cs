@@ -56,7 +56,10 @@ public class Combate
         var poderDeDefensa = CalcularPoderDeDefensa(defensor);
 
         var danoProvocado = ((valorDeAtaque * efectividad - poderDeDefensa) / MaximoDanoProvocable) * 100;
+
+        Console.WriteLine($"{_peleadores[atacante].Nombre} golpea a {_peleadores[defensor].Nombre} por {danoProvocado} puntos.");
         _peleadores[defensor].Salud -= danoProvocado;
+        Console.WriteLine($"{_peleadores[defensor].Nombre} ahora tiene {_peleadores[defensor].Salud} puntos de salud.");
     }
 
     private int CalcularPoderDeDisparo(int indice) =>

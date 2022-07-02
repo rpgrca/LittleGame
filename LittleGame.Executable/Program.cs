@@ -22,6 +22,7 @@ class Program
             Console.WriteLine("2) Mostrar datos de personaje");
             Console.WriteLine("3) Mostrar características de personaje");
             Console.WriteLine("4) Combate");
+            Console.WriteLine("5) Listar ganadores");
             Console.WriteLine("9) Salir");
             Console.WriteLine();
             Console.Write("Ingrese opcion: ");
@@ -84,12 +85,15 @@ class Program
                         combate.Pelear();
                         if (combate.Ganador is null)
                         {
-                            Console.WriteLine($"La pelea entre {primerCombatiente} y {segundoCombatiente} terminó en empate");
+                            Console.WriteLine($"La pelea entre {primerCombatiente.Nombre} y {segundoCombatiente.Nombre} terminó en empate");
                         }
                         else
                         {
                             Console.WriteLine($"Ganó {combate.Ganador.Nombre}");
                             personajesCreados.Remove(combate.Perdedor);
+
+                            var listado = new ListadoDeGanadores("./ganadores.csv");
+                            listado.Agregar(combate.Ganador, combate.Perdedor);
                         }
                     }
                     break;
