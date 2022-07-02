@@ -31,6 +31,8 @@ public class CreadorDePersonajes
         return new Personaje(nombre, tipo, nacimiento);
     }
 
+    public void InvalidarNombre(string nombre) => _nombres.Remove(nombre);
+
     private DateOnly ElegirNacimiento()
     {
         var years = _random.Next(1, 301);

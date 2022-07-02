@@ -10,6 +10,7 @@ class Program
         int index, maximo;
         string texto;
         ListadoDeGanadores listado;
+        Repositorio repositorio;
 
         var creadorDePersonajes = new CreadorDePersonajes();
         var personajesCreados = new List<Personaje>();
@@ -23,7 +24,8 @@ class Program
             Console.WriteLine("2) Mostrar datos de personaje");
             Console.WriteLine("3) Mostrar características de personaje");
             Console.WriteLine("4) Combate");
-            Console.WriteLine("5) Listar ganadores");
+            Console.WriteLine("5) Listar ganadores de ganadores.csv");
+            Console.WriteLine("6) Cargar personajes de jugadores.json");
             Console.WriteLine("9) Salir");
             Console.WriteLine();
             Console.Write("Ingrese opcion: ");
@@ -35,6 +37,9 @@ class Program
                     var personaje = creadorDePersonajes.Crear();
                     personajesCreados.Add(personaje);
                     Console.WriteLine($"Se ha creado el personaje {personaje.Nombre}");
+
+                    repositorio = new Repositorio("./jugadores.json");
+                    repositorio.Agregar(personajesCreados);
                     break;
 
                 case "2":
@@ -102,6 +107,16 @@ class Program
                 case "5":
                     listado = new ListadoDeGanadores("./ganadores.csv");
                     listado.Listar();
+                    break;
+
+                case "6":
+                    repositorio = new Repositorio("./jugadores.json");
+                    repositorio.Cargar(personajesCreados);
+
+                    foreach (var personajeAborrar in personajesCreados)
+                    {
+                        creadorDePersonajes.InvalidarNombre(personajeAborrar.Nombre);
+                    }
                     break;
 
                 case "9":
